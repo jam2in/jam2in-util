@@ -453,14 +453,14 @@ int main(int argc, char **argv)
     if (type == 1) {
         fprintf(stderr, "mc_hash perf test start\n");
         for (i = 0; i < count; i++) {
-            klen = (random() % 250);
+            klen = 1 + (random() % 250);
             hash = mc_hash(kbuf, klen, 0);
         }
         fprintf(stderr, "mc_hash perf test end\n");
     } else {
         fprintf(stderr, "ketama_hash perf test start\n");
         for (i = 0; i < count; i++) {
-            klen = (random() % 250);
+            klen = 1 + (random() % 250);
             hash = ketama_hash(kbuf, klen);
         }
         fprintf(stderr, "ketama_hash perf test end\n");
