@@ -2,10 +2,16 @@ CC = gcc
 CFLAGS = -Wall -Werror -g
 LFLAGS =
 
-SRC = gethostname.c checkhashperf.c
+SRC = gethostname.c \
+      checkhashperf.c \
+      genarcuslocalconf.c
 OBJ = $(SRC:.c=.o)
 
-all: gethostname checkhashperf
+EXE = gethostname \
+      checkhashperf \
+      genarcuslocalconf
+
+all: $(EXE)
 
 %.o: %.c
 	$(CC) $(CFLAGS) -c -o $@ $<
@@ -14,4 +20,4 @@ all: gethostname checkhashperf
 	$(CC) $(CFLAGS) -MM -o $@ $<
 
 clean:
-	rm -f $(OBJ) gethostname checkhashperf $(SRC:.c=.d)
+	rm -f $(OBJ) $(EXE) $(SRC:.c=.d)
