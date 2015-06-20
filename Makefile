@@ -4,11 +4,14 @@ LFLAGS =
 
 SRC = gethostname.c \
       checkhashperf.c \
+      checkhashring.c \
       genarcuslocalconf.c
+
 OBJ = $(SRC:.c=.o)
 
 EXE = gethostname \
       checkhashperf \
+      checkhashring\
       genarcuslocalconf
 
 all: $(EXE)
