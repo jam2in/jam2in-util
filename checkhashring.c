@@ -133,17 +133,25 @@ static void _print_node_list(struct server_item *servers, int num_servers)
     int i;
     fprintf(stderr, "cluster node list: count=%d\n", num_servers);
     for (i = 0; i < num_servers; i++) {
-        fprintf(stderr, "node[%02d]: %s (org=%s)\n", i, servers[i].hostport, node_array[i]);
+        fprintf(stderr, "node[%d]: %s (org=%s)\n", i, servers[i].hostport, node_array[i]);
     }
 }
 
-static void _print_continuum(struct continuum_item *continuum, int num_continuum)
+static void _print_continuum(struct continuum_item *continuum, int num_continuum,
+                             struct server_item *servers)
 {
     int i;
     fprintf(stderr, "cluster continuum: count=%d\n", num_continuum);
-    for (i = 0; i < num_continuum; i++) {
-        fprintf(stderr, "continuum[%04d]: hash=%08x, sidx=%02d\n",
-                i, continuum[i].point, continuum[i].index);
+    if (servers != NULL) {
+        for (i = 0; i < num_continuum; i++) {
+            fprintf(stderr, "continuum[%d]: hash=%08x, server=%s\n",
+                    i, continuum[i].point, servers[continuum[i].index].hostport);
+        }
+    } else {
+        for (i = 0; i < num_continuum; i++) {
+            fprintf(stderr, "continuum[%d]: hash=%08x, sidx=%d\n",
+                    i, continuum[i].point, continuum[i].index);
+        }
     }
 }
 
@@ -202,7 +210,8 @@ int main(int argc, char **argv)
     }
 
     _print_node_list(servers, node_count);
-    _print_continuum(continuum, num_continuum);
+    //_print_continuum(continuum, num_continuum, NULL);
+    _print_continuum(continuum, num_continuum, servers);
     _check_continuum(continuum, num_continuum);
 
     server_item_free(servers, node_count);
