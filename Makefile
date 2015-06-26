@@ -6,6 +6,7 @@ SRC = gethostname.c \
       checkhashperf.c \
       checkhashring.c \
       genassochash.c \
+      gennodelist.c \
       genarcuslocalconf.c
 
 OBJ = $(SRC:.c=.o)
@@ -14,6 +15,7 @@ EXE = gethostname \
       checkhashperf \
       checkhashring \
       genassochash \
+      gennodelist \
       genarcuslocalconf
 
 all: $(EXE)
