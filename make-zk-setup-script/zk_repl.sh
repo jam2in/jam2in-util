@@ -1,0 +1,22 @@
+COMPANY="jam2in"
+ZK_CLI_STR="$HOME/Work/arcus/repo/naver/arcus/zookeeper/bin/zkCli.sh"
+ZK_ADDR_URL="localhost"
+ZK_PORT="3181"
+SERVICE_CODE="test"
+
+ARCUS_INST_DIR="$HOME/arcus_inst"
+TARGET_DIR="${ARCUS_INST_DIR}/scripts"
+START_MEMC_FILE_NAME="${TARGET_DIR}/start-memcached-${COMPANY}-${SERVICE_CODE}"
+SETUP_FILE_NAME="${TARGET_DIR}/setup-zk-${COMPANY}-${SERVICE_CODE}-$(date +%Y%m%d).bash"
+REMOVE_FILE_NAME="${TARGET_DIR}/remove-zk-${COMPANY}-${SERVICE_CODE}-$(date +%Y%m%d).bash"
+MEMC_USER_ACCOUNT=root
+
+GROUP_NUM=1
+NODE_NUM=1
+NODE_PORT="31211"
+GROUP_PORT="31212"
+MAX_CONNS="1000"
+NODE_MEM="1000"
+
+GROUP0_NAME="g0"
+GROUP0_NODE0_ADDR="127.0.0.1"
