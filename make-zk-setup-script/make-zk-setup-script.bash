@@ -52,7 +52,7 @@ do
 \$ZK_CLI \$ZK_ADDR delete /arcus_repl/cache_server_mapping/${NODE_ADDR}:${NODE_PORT}/${SERVICE_CODE}^${GNAME}^${NODE_ADDR}:${GROUP_PORT}
 \$ZK_CLI \$ZK_ADDR delete /arcus_repl/cache_server_mapping/${NODE_ADDR}:${NODE_PORT}" >> ${REMOVE_FILE_NAME}
 
-    eval START_MEMC_FILE_NAME_OUT=${START_MEMC_FILE_NAME}-${GNAME}-node${j}.bash;
+    eval START_MEMC_FILE_NAME_OUT=${START_MEMC_FILE_NAME}-${GNAME}-node${j}-${NODE_ADDR}-${NODE_PORT}.bash;
     echo "mkdir -p ${ARCUS_MEMCACHED_DIR}/memc_pid_list
 
 ${ARCUS_MEMCACHED_DIR}/memcached -P ${ARCUS_MEMCACHED_DIR}/memc_pid_list/memcached.${NODE_ADDR}:${NODE_PORT} -E ${ARCUS_MEMCACHED_LIB_DIR}/default_engine.so -X ${ARCUS_MEMCACHED_LIB_DIR}/syslog_logger.so -X ${ARCUS_MEMCACHED_LIB_DIR}/ascii_scrub.so -d -v -o 60 -r -R5 -U 0 -D: -b 8192 -m${NODE_MEM} -p ${NODE_PORT} -c ${MAX_CONNS} -t ${THREAD_COUNT} -u ${MEMC_USER_ACCOUNT} -z ${ZK_ENSEMBLE_ADDR} -e \"replication_config_file=${REPLICATION_CONFIG_FILE};\"" >> ${START_MEMC_FILE_NAME_OUT}
