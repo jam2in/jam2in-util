@@ -53,7 +53,7 @@ do
     eval START_MEMC_FILE_NAME_OUT=${START_MEMC_FILE_NAME}-${GNAME}-${NODE_ADDR}-${NODE_PORT}.bash;
     echo "mkdir -p ${ARCUS_MEMCACHED_DIR}/memc_pid_list
 
-${ARCUS_MEMCACHED_DIR}/memcached -P ${ARCUS_MEMCACHED_DIR}/memc_pid_list/memcached.${NODE_ADDR}:${NODE_PORT} -E ${ARCUS_MEMCACHED_LIB_DIR}/default_engine.so -X ${ARCUS_MEMCACHED_LIB_DIR}/syslog_logger.so -X ${ARCUS_MEMCACHED_LIB_DIR}/ascii_scrub.so -d -v -o 60 -r -R5 -U 0 -D: -b 8192 -m${NODE_MEM} -p ${NODE_PORT} -c ${MAX_CONNS} -t 6 -u ${MEMC_USER_ACCOUNT} -z ${ZK_ENSEMBLE_ADDR}" >> ${START_MEMC_FILE_NAME_OUT}
+${ARCUS_MEMCACHED_DIR}/memcached -P ${ARCUS_MEMCACHED_DIR}/memc_pid_list/memcached.${NODE_ADDR}:${NODE_PORT} -E ${ARCUS_MEMCACHED_LIB_DIR}/default_engine.so -X ${ARCUS_MEMCACHED_LIB_DIR}/syslog_logger.so -X ${ARCUS_MEMCACHED_LIB_DIR}/ascii_scrub.so -d -v -o 60 -r -R5 -U 0 -D: -b 8192 -m${NODE_MEM} -p ${NODE_PORT} -c ${MAX_CONNS} -t ${THREAD_COUNT} -u ${MEMC_USER_ACCOUNT} -z ${ZK_ENSEMBLE_ADDR}" >> ${START_MEMC_FILE_NAME_OUT}
 
   chmod +x ${START_MEMC_FILE_NAME_OUT}
 	done
